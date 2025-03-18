@@ -1,8 +1,8 @@
-#include "Bureaucrat.hpp"
-
 #include <iostream>
 #include <string>
 #include <exception>
+
+#include "Bureaucrat.hpp"
 
 int main(void) {
     try {

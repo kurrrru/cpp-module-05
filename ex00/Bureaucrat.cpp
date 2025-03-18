@@ -6,12 +6,15 @@
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150) {
 }
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name), _grade(grade) {
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name),
+    _grade(grade) {
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& src) : _name(src._name), _grade(src._grade) {
+Bureaucrat::Bureaucrat(const Bureaucrat& src) : _name(src._name),
+    _grade(src._grade) {
 }
 
+// name is a const member variable, so it cannot be reassigned
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs) {
     if (this != &rhs) {
         _grade = rhs._grade;
@@ -68,6 +71,7 @@ Bureaucrat::Grade::~Grade() {
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
-    os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+    os << bureaucrat.getName() << ", bureaucrat grade "
+        << bureaucrat.getGrade();
     return os;
 }
