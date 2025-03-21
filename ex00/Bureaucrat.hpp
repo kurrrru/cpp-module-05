@@ -6,6 +6,16 @@
 
 class Bureaucrat {
  public:
+    Bureaucrat();
+    Bureaucrat(const Bureaucrat& src);
+    Bureaucrat& operator=(const Bureaucrat& rhs);
+    ~Bureaucrat();
+
+    Bureaucrat(const std::string& name, int grade);
+
+    std::string getName() const;
+    int getGrade() const;
+
     class GradeTooHighException : public std::exception {
      public:
         virtual const char* what() const throw();
@@ -14,13 +24,6 @@ class Bureaucrat {
      public:
         virtual const char* what() const throw();
     };
-    Bureaucrat();
-    Bureaucrat(const std::string& name, int grade);
-    Bureaucrat(const Bureaucrat& src);
-    Bureaucrat& operator=(const Bureaucrat& rhs);
-    ~Bureaucrat();
-    std::string getName() const;
-    int getGrade() const;
 
  private:
     const std::string _name;
