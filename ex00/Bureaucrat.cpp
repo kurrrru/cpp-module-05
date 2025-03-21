@@ -3,6 +3,18 @@
 #include <iostream>
 #include <string>
 
+namespace {
+namespace color {
+const char red[] = "\033[1;31m";
+const char green[] = "\033[1;32m";
+const char yellow[] = "\033[1;33m";
+const char blue[] = "\033[1;34m";
+const char magenta[] = "\033[1;35m";
+const char cyan[] = "\033[1;36m";
+const char reset[] = "\033[0m";
+}
+}  // namespace
+
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150) {
 }
 
@@ -71,7 +83,8 @@ Bureaucrat::Grade::~Grade() {
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
-    os << bureaucrat.getName() << ", bureaucrat grade "
-        << bureaucrat.getGrade();
+    os << color::cyan << bureaucrat.getName() << color::reset
+        << ", bureaucrat grade " << color::blue << bureaucrat.getGrade()
+        << color::reset;
     return os;
 }
