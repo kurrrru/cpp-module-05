@@ -4,16 +4,21 @@
 #include <iostream>
 #include <exception>
 
-class Bureaucrat {
+#include "Bureaucrat.hpp"
+
+class Form {
  public:
-    Bureaucrat();
-    Bureaucrat(const std::string& name, int grade);
-    Bureaucrat(const Bureaucrat& src);
-    Bureaucrat& operator=(const Bureaucrat& rhs);
-    ~Bureaucrat();
+    Form();
+    Form(const std::string& name, int gradeToSign, int gradeToExecute);
+    Form(const Form& src);
+    Form& operator=(const Form& rhs);
+    ~Form();
 
     std::string getName() const;
-    int getGrade() const;
+    bool getSigned() const;
+    int getGradeToSign() const;
+    int getGradeToExecute() const;
+    void beSigned(const Bureaucrat& bureaucrat);
 
     class GradeTooHighException : public std::exception {
      public:
@@ -26,7 +31,6 @@ class Bureaucrat {
     };
 
  private:
-    const std::string _name;
     class Grade {
      public:
         Grade();
@@ -40,7 +44,11 @@ class Bureaucrat {
         static const int _maxGrade = 1;
         static const int _minGrade = 150;
         int _grade;
-    } _grade;
+    };
+    const std::string _name;
+    bool _signed;
+    const Grade _gradeToSign;
+    const Grade _gradeToExecute;
 };
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
+std::ostream& operator<<(std::ostream& os, const Form& form);
