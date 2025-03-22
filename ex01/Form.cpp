@@ -4,6 +4,18 @@
 #include <string>
 #include <exception>
 
+namespace {
+namespace color {
+const char red[] = "\033[1;31m";
+const char green[] = "\033[1;32m";
+const char yellow[] = "\033[1;33m";
+const char blue[] = "\033[1;34m";
+const char magenta[] = "\033[1;35m";
+const char cyan[] = "\033[1;36m";
+const char reset[] = "\033[0m";
+}
+}  // namespace
+
 Form::Form() : _name("default"), _signed(false), _gradeToSign(),
     _gradeToExecute() {
 }
@@ -43,11 +55,15 @@ int Form::getGradeToExecute() const {
     return _gradeToExecute.getGrade();
 }
 
-void Form::beSigned(const Bureaucrat& bureaucrat) {
+bool Form::beSigned(const Bureaucrat& bureaucrat) {
+    if (_signed) {
+        return false;
+    }
     if (bureaucrat.getGrade() > _gradeToSign.getGrade()) {
         throw GradeTooLowException();
     }
     _signed = true;
+    return true;
 }
 
 const char* Form::GradeTooHighException::what() const throw() {
@@ -80,13 +96,18 @@ Form::Grade& Form::Grade::operator=(const Grade& rhs) {
     return *this;
 }
 
+Form::Grade::~Grade() {
+}
+
 int Form::Grade::getGrade() const {
     return _grade;
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& form) {
-    os << "Form: " << form.getName() << ", signed: " << form.getSigned()
-        << ", grade to sign: " << form.getGradeToSign()
-        << ", grade to execute: " << form.getGradeToExecute();
+    os << color::green << "Form: " << color::reset << form.getName() << ", "
+        << color::green << "signed: " << color::reset << form.getSigned()
+        << ", " << color::green << "grade to sign: " << color::reset
+        << form.getGradeToSign() << ", " << color::green
+        << "grade to execute: " << color::reset << form.getGradeToExecute();
     return os;
 }

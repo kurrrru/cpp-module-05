@@ -45,8 +45,30 @@ int Bureaucrat::getGrade() const {
     return _grade.getGrade();
 }
 
-int Bureaucrat::Grade::getGrade() const {
-    return _grade;
+void Bureaucrat::incrementGrade() {
+    _grade.increment();
+}
+
+void Bureaucrat::decrementGrade() {
+    _grade.decrement();
+}
+
+void Bureaucrat::signForm(Form& form) {
+    try {
+        if (form.beSigned(*this)) {
+            std::cout << color::blue << getName() << color::reset << " signed "
+                << color::green << form.getName() << color::reset << std::endl;
+        } else {
+            std::cout << color::blue << getName() << color::reset << " couldn't sign "
+                << color::green << form.getName() << color::reset
+                << " because it's already signed" << std::endl;
+        }
+    } catch (const std::exception& e) {
+        std::cerr << color::blue << getName() << color::reset << " couldn't sign "
+            << color::green << form.getName() << color::reset << " because "
+            << color::red << e.what() << color::reset
+            << std::endl;
+    }
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
@@ -80,6 +102,24 @@ Bureaucrat::Grade& Bureaucrat::Grade::operator=(const Grade& rhs) {
 }
 
 Bureaucrat::Grade::~Grade() {
+}
+
+int Bureaucrat::Grade::getGrade() const {
+    return _grade;
+}
+
+void Bureaucrat::Grade::increment() {
+    if (_grade == _maxGrade) {
+        throw GradeTooHighException();
+    }
+    _grade--;
+}
+
+void Bureaucrat::Grade::decrement() {
+    if (_grade == _minGrade) {
+        throw GradeTooLowException();
+    }
+    _grade++;
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
