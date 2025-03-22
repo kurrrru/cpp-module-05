@@ -45,8 +45,12 @@ int Bureaucrat::getGrade() const {
     return _grade.getGrade();
 }
 
-int Bureaucrat::Grade::getGrade() const {
-    return _grade;
+void Bureaucrat::incrementGrade() {
+    _grade.increment();
+}
+
+void Bureaucrat::decrementGrade() {
+    _grade.decrement();
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
@@ -80,6 +84,24 @@ Bureaucrat::Grade& Bureaucrat::Grade::operator=(const Grade& rhs) {
 }
 
 Bureaucrat::Grade::~Grade() {
+}
+
+int Bureaucrat::Grade::getGrade() const {
+    return _grade;
+}
+
+void Bureaucrat::Grade::increment() {
+    if (_grade == _maxGrade) {
+        throw GradeTooHighException();
+    }
+    _grade--;
+}
+
+void Bureaucrat::Grade::decrement() {
+    if (_grade == _minGrade) {
+        throw GradeTooLowException();
+    }
+    _grade++;
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
