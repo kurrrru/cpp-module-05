@@ -21,5 +21,20 @@ int main(void) {
         } catch (const std::exception& e) {
             std::cerr << e.what() << std::endl;
         }
+        int j = i + 1;
+        std::cout << "j = " << j << std::endl;
+        try {
+            Bureaucrat bureaucrat("bureaucrat", j);
+            std::cout << bureaucrat << std::endl;
+            std::cout << "Grade: " << bureaucrat.getGrade() << std::endl;
+            std::cout << "Name: " << bureaucrat.getName() << std::endl;
+            bureaucrat.incrementGrade();
+            std::cout << "Grade: " << bureaucrat.getGrade() << std::endl;
+            bureaucrat.decrementGrade();
+            bureaucrat.decrementGrade();
+            std::cout << "Grade: " << bureaucrat.getGrade() << std::endl;
+        } catch (const std::exception& e) {
+            std::cerr << e.what() << std::endl;
+        }
     }
 }
