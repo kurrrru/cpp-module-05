@@ -42,9 +42,7 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 }
 
 void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
-    if (getGradeToExecute() < executor.getGrade()) {
-        throw GradeTooLowException();
-    }
+    AForm::execute(executor);
     std::cout << "Drilling noises" << std::endl;
     std::srand(std::time(NULL));
     bool success = std::rand() % 2;
@@ -56,10 +54,5 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
         std::cout << color::green
             << _target << color::reset << " robotomization failed"
             << std::endl;
-        throw RobotomizeException();
     }
-}
-
-const char* RobotomyRequestForm::RobotomizeException::what() const throw() {
-    return "Robotomization failed";
 }

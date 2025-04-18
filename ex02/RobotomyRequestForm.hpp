@@ -16,11 +16,6 @@ class RobotomyRequestForm : public AForm {
 
     virtual void execute(const Bureaucrat& executor) const;
 
-    class RobotomizeException : public std::exception {
-     public:
-        virtual const char* what() const throw();
-    };
-
  private:
     const std::string _target;
 };

@@ -42,9 +42,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 }
 
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
-    if (getGradeToExecute() < executor.getGrade()) {
-        throw GradeTooLowException();
-    }
+    AForm::execute(executor);
     std::string filename = _target + "_shrubbery";
     std::ofstream file(filename.c_str());
     if (!file.is_open()) {

@@ -8,30 +8,38 @@
 #include "ShrubberyCreationForm.hpp"
 
 int main() {
-    std::cout << "PresidentialPardonForm" << std::endl;
-    {
-        Bureaucrat bureaucrat("bureaucrat", 1);
-        PresidentialPardonForm form("target");
+    for (int i = -29; i <= 180; i += 30) {
+        std::cout << "PresidentialPardonForm" << std::endl;
+        try {
+            Bureaucrat bureaucrat("bureaucrat", i);
+            PresidentialPardonForm form("target");
 
-        bureaucrat.signForm(form);
-        bureaucrat.executeForm(form);
-    }
+            bureaucrat.signForm(form);
+            bureaucrat.executeForm(form);
+        } catch (const std::exception& e) {
+            std::cerr << e.what() << std::endl;
+        }
 
-    std::cout << "RobotomyRequestForm" << std::endl;
-    {
-        Bureaucrat bureaucrat("bureaucrat", 1);
-        RobotomyRequestForm form("target");
+        std::cout << "RobotomyRequestForm" << std::endl;
+        try {
+            Bureaucrat bureaucrat("bureaucrat", i);
+            RobotomyRequestForm form("target");
 
-        bureaucrat.signForm(form);
-        bureaucrat.executeForm(form);
-    }
+            bureaucrat.signForm(form);
+            bureaucrat.executeForm(form);
+        } catch (const std::exception& e) {
+            std::cerr << e.what() << std::endl;
+        }
 
-    std::cout << "ShrubberyCreationForm" << std::endl;
-    {
-        Bureaucrat bureaucrat("bureaucrat", 1);
-        ShrubberyCreationForm form("target");
+        std::cout << "ShrubberyCreationForm" << std::endl;
+        try {
+            Bureaucrat bureaucrat("bureaucrat", i);
+            ShrubberyCreationForm form("target");
 
-        bureaucrat.signForm(form);
-        bureaucrat.executeForm(form);
+            bureaucrat.signForm(form);
+            bureaucrat.executeForm(form);
+        } catch (const std::exception& e) {
+            std::cerr << e.what() << std::endl;
+        }
     }
 }

@@ -16,11 +16,6 @@ class PresidentialPardonForm : public AForm {
 
     virtual void execute(const Bureaucrat& executor) const;
 
-    class PardonException : public std::exception {
-     public:
-        virtual const char* what() const throw();
-    };
-
  private:
     const std::string _target;
 };
