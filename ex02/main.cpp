@@ -9,6 +9,7 @@
 
 int main() {
     for (int i = -29; i <= 180; i += 30) {
+        std::cout << "i = " << i << std::endl;
         std::cout << "PresidentialPardonForm" << std::endl;
         try {
             Bureaucrat bureaucrat("bureaucrat", i);
