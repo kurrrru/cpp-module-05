@@ -7,9 +7,8 @@
 
 class AForm;
 
-class Intern
-{
-public:
+class Intern {
+ public:
     Intern();
     Intern(const Intern& src);
     Intern& operator=(const Intern& rhs);
@@ -18,8 +17,7 @@ public:
     AForm* makeForm(const std::string& formName, const std::string& target);
 
  private:
-    struct FormInfo
-    {
+    struct FormInfo {
         const char* name;
         AForm* (*create)(const std::string&);
     };
