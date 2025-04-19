@@ -117,10 +117,11 @@ void AForm::execute(const Bureaucrat& executor) const {
 }
 
 std::ostream& operator<<(std::ostream& os, const AForm& form) {
-    os << color::green << "Form: " << color::reset << form.getName() << ", "
-        << color::green << "signed: " << color::reset << form.getSigned()
-        << ", " << color::green << "grade to sign: " << color::reset
-        << form.getGradeToSign() << ", " << color::green
-        << "grade to execute: " << color::reset << form.getGradeToExecute();
+    os << "Form: " << color::green << form.getName() << color::reset << ", "
+        << "signed: " << color::yellow << form.getSigned() << color::reset
+        << ", " << "grade to sign: " << color::magenta
+        << form.getGradeToSign() << color::reset << ", "
+        << "grade to execute: " << color::magenta
+        << form.getGradeToExecute() << color::reset;
     return os;
 }

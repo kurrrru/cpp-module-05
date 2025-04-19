@@ -68,7 +68,7 @@ AForm* Intern::makeForm(const std::string& formName,
         << std::endl;
     std::cerr << "The available forms are follows:" << std::endl;
     for (size_t i = 0; i < formInfosSize; ++i) {
-        std::cerr << "- " << color::cyan << formInfos[i].name << color::reset
+        std::cerr << "- " << color::green << formInfos[i].name << color::reset
             << std::endl;
     }
     return NULL;
