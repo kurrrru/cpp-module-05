@@ -1,12 +1,16 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <exception>
 
-#include "Bureaucrat.hpp"
+#include "ex00/Bureaucrat.hpp"
+#include "toolbox/stepmark.hpp"
+#include "toolbox/color.hpp"
 
 int main(void) {
-    for (int i = -30; i <= 180; i += 30)
-    {
+    toolbox::logger::StepMark::setLogFile("bureaucrat.log");
+    toolbox::logger::StepMark::setLevel(toolbox::logger::NOTICE);
+    for (int i = -30; i <= 180; i += 30) {
         std::cout << "i = " << i << std::endl;
         try {
             Bureaucrat bureaucrat("bureaucrat", i);
@@ -19,7 +23,11 @@ int main(void) {
             bureaucrat.decrementGrade();
             std::cout << "Grade: " << bureaucrat.getGrade() << std::endl;
         } catch (const std::exception& e) {
-            std::cerr << e.what() << std::endl;
+            std::stringstream ss;
+            ss << "Exception caught: " << e.what();
+            toolbox::logger::StepMark::error(ss.str());
+            std::cerr << toolbox::color::red << "Error: " << e.what()
+                    << toolbox::color::reset << std::endl;
         }
         int j = i + 1;
         std::cout << "j = " << j << std::endl;
@@ -34,7 +42,11 @@ int main(void) {
             bureaucrat.decrementGrade();
             std::cout << "Grade: " << bureaucrat.getGrade() << std::endl;
         } catch (const std::exception& e) {
-            std::cerr << e.what() << std::endl;
+            std::stringstream ss;
+            ss << "Exception caught: " << e.what();
+            toolbox::logger::StepMark::error(ss.str());
+            std::cerr << toolbox::color::red << "Error: " << e.what()
+                    << toolbox::color::reset << std::endl;
         }
     }
 }

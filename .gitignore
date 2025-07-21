@@ -1,0 +1,7 @@
+.vscode
+*.o
+*.log
+*.txt
+
+# Executable files
+bureaucrat
