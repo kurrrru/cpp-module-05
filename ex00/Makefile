@@ -1,7 +1,12 @@
 NAME = bureaucrat
 
 # sources
-SRCS = main.cpp Bureaucrat.cpp ../toolbox/color.cpp ../toolbox/stepmark.cpp
+SRCS = main.cpp \
+	Bureaucrat.cpp \
+	BureaucratExceptions.cpp \
+	BureaucratGrade.cpp \
+	../toolbox/color.cpp \
+	../toolbox/stepmark.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
