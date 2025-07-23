@@ -9,7 +9,7 @@
 
 int main(void) {
     toolbox::logger::StepMark::setLogFile("bureaucrat.log");
-    toolbox::logger::StepMark::setLevel(toolbox::logger::NOTICE);
+    toolbox::logger::StepMark::setLevel(toolbox::logger::INFO);
     for (int i = -30; i <= 180; i += 30) {
         std::cout << "i = " << i << std::endl;
         try {

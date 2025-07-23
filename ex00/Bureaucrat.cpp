@@ -57,7 +57,7 @@ Bureaucrat::~Bureaucrat() {
 std::string Bureaucrat::getName() const {
     std::stringstream ss;
     ss << "Bureaucrat::getName called: name=\"" << _name << "\"";
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::debug(ss.str());
     return _name;
 }
 
@@ -65,14 +65,15 @@ int Bureaucrat::getGrade() const {
     std::stringstream ss;
     ss << "Bureaucrat::getGrade called: name=\"" << _name
         << "\", grade=" << _grade.getGrade();
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::debug(ss.str());
     return _grade.getGrade();
 }
 
 void Bureaucrat::incrementGrade() {
     std::stringstream ss;
     ss << "Bureaucrat::incrementGrade called: name=\"" << _name
-        << "\", previous grade=" << _grade.getGrade();
+        << "\", old grade=" << _grade.getGrade()
+        << ", new grade=" << _grade.getGrade() - 1;
     toolbox::logger::StepMark::info(ss.str());
     _grade.increment();
 }
@@ -80,7 +81,8 @@ void Bureaucrat::incrementGrade() {
 void Bureaucrat::decrementGrade() {
     std::stringstream ss;
     ss << "Bureaucrat::decrementGrade called: name=\"" << _name
-        << "\", previous grade=" << _grade.getGrade();
+        << "\", old grade=" << _grade.getGrade()
+        << ", new grade=" << _grade.getGrade() + 1;
     toolbox::logger::StepMark::info(ss.str());
     _grade.decrement();
 }

@@ -63,14 +63,15 @@ int Bureaucrat::Grade::getGrade() const {
 
 void Bureaucrat::Grade::increment() {
     std::stringstream ss;
-    ss << "Bureaucrat::Grade::increment called: grade=" << _grade;
+    ss << "Bureaucrat::Grade::increment called: old grade="
+        << _grade << ", new grade=" << _grade - 1;
     toolbox::logger::StepMark::debug(ss.str());
     if (_grade == _maxGrade) {
         std::stringstream ss;
         ss << "Bureaucrat::Grade::increment() failed: Grade is too high: "
             << "The grade must be between maxGrade=" << _maxGrade
-            << " and minGrade=" << _minGrade << ". Current grade=" << _grade
-            << " and incremented grade=" << _grade - 1;
+            << " and minGrade=" << _minGrade << ". Old grade=" << _grade
+            << " and new grade=" << _grade - 1;
         throw GradeTooHighException(ss.str());
     }
     _grade--;
@@ -78,14 +79,15 @@ void Bureaucrat::Grade::increment() {
 
 void Bureaucrat::Grade::decrement() {
     std::stringstream ss;
-    ss << "Bureaucrat::Grade::decrement called: grade=" << _grade;
+    ss << "Bureaucrat::Grade::decrement called: old grade="
+        << _grade << ", new grade=" << _grade + 1;
     toolbox::logger::StepMark::debug(ss.str());
     if (_grade == _minGrade) {
         std::stringstream ss;
         ss << "Bureaucrat::Grade::decrement() failed: Grade is too low: "
             << "The grade must be between maxGrade=" << _maxGrade
-            << " and minGrade=" << _minGrade << ". Current grade=" << _grade
-            << " and decremented grade=" << _grade + 1;
+            << " and minGrade=" << _minGrade << ". Old grade=" << _grade
+            << " and new grade=" << _grade + 1;
         throw GradeTooLowException(ss.str());
     }
     _grade++;
