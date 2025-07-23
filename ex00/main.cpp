@@ -3,9 +3,9 @@
 #include <sstream>
 #include <exception>
 
-#include "ex00/Bureaucrat.hpp"
-#include "toolbox/stepmark.hpp"
-#include "toolbox/color.hpp"
+#include <ex00/Bureaucrat.hpp>
+#include <toolbox/stepmark.hpp>
+#include <toolbox/color.hpp>
 
 int main(void) {
     toolbox::logger::StepMark::setLogFile("bureaucrat.log");

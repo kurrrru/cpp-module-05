@@ -2,8 +2,8 @@
 #include <string>
 #include <exception>
 
-#include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include <ex01/Bureaucrat.hpp>
+#include <ex01/Form.hpp>
 
 int main(void) {
     Bureaucrat bureaucrats[5] = {

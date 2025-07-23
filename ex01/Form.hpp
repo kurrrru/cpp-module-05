@@ -4,7 +4,7 @@
 #include <iostream>
 #include <exception>
 
-#include "Bureaucrat.hpp"
+#include <ex01/Bureaucrat.hpp>
 
 class Bureaucrat;
 

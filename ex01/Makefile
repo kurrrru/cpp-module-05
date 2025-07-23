@@ -1,13 +1,13 @@
 NAME = bureaucrat
 
 # sources
-SRCS = main.cpp Bureaucrat.cpp Form.cpp
+SRCS = main.cpp Bureaucrat.cpp Form.cpp ../toolbox/stepmark.cpp ../toolbox/color.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 # compiler
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I..
 
 # rules
 all: $(NAME)

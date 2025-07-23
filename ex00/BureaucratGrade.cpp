@@ -2,9 +2,9 @@
 #include <string>
 #include <sstream>
 
-#include "ex00/Bureaucrat.hpp"
-#include "toolbox/color.hpp"
-#include "toolbox/stepmark.hpp"
+#include <ex00/Bureaucrat.hpp>
+#include <toolbox/color.hpp>
+#include <toolbox/stepmark.hpp>
 
 Bureaucrat::Grade::Grade() : _grade(_minGrade) {
     std::stringstream ss;

@@ -1,11 +1,11 @@
-#include "ex00/Bureaucrat.hpp"
+#include <ex00/Bureaucrat.hpp>
 
 #include <iostream>
 #include <string>
 #include <sstream>
 
-#include "toolbox/color.hpp"
-#include "toolbox/stepmark.hpp"
+#include <toolbox/color.hpp>
+#include <toolbox/stepmark.hpp>
 
 Bureaucrat::Bureaucrat() : _name("default"), _grade() {
     std::stringstream ss;

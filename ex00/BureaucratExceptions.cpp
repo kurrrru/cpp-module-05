@@ -1,9 +1,9 @@
 #include <string>
 #include <sstream>
 
-#include "ex00/Bureaucrat.hpp"
-#include "toolbox/color.hpp"
-#include "toolbox/stepmark.hpp"
+#include <ex00/Bureaucrat.hpp>
+#include <toolbox/color.hpp>
+#include <toolbox/stepmark.hpp>
 
 Bureaucrat::GradeInvalidException::GradeInvalidException(
     const std::string& message) : _message(message) {

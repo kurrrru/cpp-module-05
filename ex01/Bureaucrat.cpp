@@ -1,19 +1,11 @@
-#include "Bureaucrat.hpp"
+#include <ex01/Bureaucrat.hpp>
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
-namespace {
-namespace color {
-const char red[] = "\033[1;31m";
-const char green[] = "\033[1;32m";
-// const char yellow[] = "\033[1;33m";
-const char blue[] = "\033[1;34m";
-// const char magenta[] = "\033[1;35m";
-const char cyan[] = "\033[1;36m";
-const char reset[] = "\033[0m";
-}
-}  // namespace
+#include <toolbox/color.hpp>
+#include <toolbox/stepmark.hpp>
 
 Bureaucrat::Bureaucrat() : _name("default"), _grade() {
 }
@@ -56,19 +48,24 @@ void Bureaucrat::decrementGrade() {
 void Bureaucrat::signForm(Form& form) {
     try {
         if (form.beSigned(*this)) {
-            std::cout << color::blue << getName() << color::reset << " signed "
-                << color::green << form.getName() << color::reset << std::endl;
+            std::cout << toolbox::color::blue << getName()
+                << toolbox::color::reset << " signed "
+                << toolbox::color::green << form.getName()
+                << toolbox::color::reset << std::endl;
         } else {
-            std::cout << color::blue << getName() << color::reset
-                << " couldn't sign "
-                << color::green << form.getName() << color::reset
-                << " because it's already signed" << std::endl;
+            std::cout << toolbox::color::blue << getName()
+                << toolbox::color::reset << " couldn't sign "
+                << toolbox::color::green << form.getName()
+                << toolbox::color::reset << " because it's already signed"
+                << std::endl;
         }
     } catch (const std::exception& e) {
-        std::cerr << color::blue << getName() << color::reset
-            << " couldn't sign "
-            << color::green << form.getName() << color::reset << " because "
-            << color::red << e.what() << color::reset
+        std::cerr << toolbox::color::blue << getName()
+            << toolbox::color::reset << " couldn't sign "
+            << toolbox::color::green << form.getName()
+            << toolbox::color::reset << " because "
+            << toolbox::color::red << e.what()
+            << toolbox::color::reset
             << std::endl;
     }
 }
@@ -125,8 +122,9 @@ void Bureaucrat::Grade::decrement() {
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
-    os << color::cyan << bureaucrat.getName() << color::reset
-        << ", bureaucrat grade " << color::blue << bureaucrat.getGrade()
-        << color::reset;
+    os << toolbox::color::cyan << bureaucrat.getName()
+        << toolbox::color::reset << ", bureaucrat grade "
+        << toolbox::color::blue << bureaucrat.getGrade()
+        << toolbox::color::reset;
     return os;
 }
