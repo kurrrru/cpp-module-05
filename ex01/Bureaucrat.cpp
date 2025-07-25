@@ -93,7 +93,7 @@ void Bureaucrat::signForm(Form& form) {
         << "\" (grade: " << _grade.getGrade() << "), "
         << "signing form: " << form.getName()
         << " (grade to sign: " << form.getGradeToSign() << ")";
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::notice(ss.str());
     try {
         if (form.beSigned(*this)) {
             std::cout << toolbox::color::blue << getName()

@@ -6,6 +6,8 @@ SRCS = main.cpp \
 	BureaucratExceptions.cpp \
 	BureaucratGrade.cpp \
 	Form.cpp \
+	FormExceptions.cpp \
+	FormGrade.cpp \
 	../toolbox/color.cpp \
 	../toolbox/stepmark.cpp
 OBJS = $(SRCS:.cpp=.o)

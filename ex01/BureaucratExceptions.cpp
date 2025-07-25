@@ -1,9 +1,8 @@
-#include <ex01/Bureaucrat.hpp>
-
 #include <iostream>
 #include <string>
 #include <sstream>
 
+#include <ex01/Bureaucrat.hpp>
 #include <toolbox/color.hpp>
 #include <toolbox/stepmark.hpp>
 

@@ -31,7 +31,7 @@ class Bureaucrat {
      private:
         std::string _message;
     };
-    
+
     class GradeTooHighException : public GradeInvalidException {
      public:
         explicit GradeTooHighException(

@@ -33,8 +33,7 @@ Bureaucrat::GradeTooHighException::GradeTooHighException(
     toolbox::logger::StepMark::warning(ss.str());
 }
 
-Bureaucrat::GradeTooHighException::~GradeTooHighException()
-    throw() {
+Bureaucrat::GradeTooHighException::~GradeTooHighException() throw() {
     std::stringstream ss;
     ss << "Bureaucrat::GradeTooHighException destroyed";
     toolbox::logger::StepMark::info(ss.str());
