@@ -94,9 +94,9 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
         << "\", grade=" << bureaucrat.getGrade();
     toolbox::logger::StepMark::debug(ss.str());
 
-    os << toolbox::color::cyan << bureaucrat.getName() << toolbox::color::reset
-        << ", bureaucrat grade " << toolbox::color::blue
-        << bureaucrat.getGrade()
+    os << toolbox::color::cyan << bureaucrat.getName()
+        << toolbox::color::reset << ", bureaucrat grade "
+        << toolbox::color::blue << bureaucrat.getGrade()
         << toolbox::color::reset;
     return os;
 }
