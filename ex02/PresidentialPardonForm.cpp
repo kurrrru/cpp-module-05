@@ -9,18 +9,50 @@
 
 PresidentialPardonForm::PresidentialPardonForm()
     : AForm("Presidential Pardon", 25, 5), _target("default") {
+    std::stringstream ss;
+    ss << "Default PresidentialPardonForm created: "
+        << "name=\"" << getName() << "\""
+        << ", signed=" << getSigned()
+        << ", grade to sign=" << getGradeToSign()
+        << ", grade to execute=" << getGradeToExecute()
+        << ", target=\"" << _target << "\"";
+    toolbox::logger::StepMark::info(ss.str());
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
     : AForm("Presidential Pardon", 25, 5), _target(target) {
+    std::stringstream ss;
+    ss << "PresidentialPardonForm created: "
+        << "name=\"" << getName() << "\""
+        << ", signed=" << getSigned()
+        << ", grade to sign=" << getGradeToSign()
+        << ", grade to execute=" << getGradeToExecute()
+        << ", target=\"" << _target << "\"";
+    toolbox::logger::StepMark::info(ss.str());
 }
 
 PresidentialPardonForm::PresidentialPardonForm
     (const PresidentialPardonForm& src) : AForm(src), _target(src._target) {
+    std::stringstream ss;
+    ss << "PresidentialPardonForm copy created: "
+        << "name=\"" << getName() << "\""
+        << ", signed=" << getSigned()
+        << ", grade to sign=" << getGradeToSign()
+        << ", grade to execute=" << getGradeToExecute()
+        << ", target=\"" << _target << "\"";
+    toolbox::logger::StepMark::info(ss.str());
 }
 
 PresidentialPardonForm& PresidentialPardonForm::operator=
     (const PresidentialPardonForm& rhs) {
+    std::stringstream ss;
+    ss << "PresidentialPardonForm assignment operator called: "
+        << "name=\"" << getName() << "\""
+        << ", signed=" << getSigned()
+        << ", grade to sign=" << getGradeToSign()
+        << ", grade to execute=" << getGradeToExecute()
+        << ", target=\"" << _target << "\"";
+    toolbox::logger::StepMark::info(ss.str());
     if (this != &rhs) {
         AForm::operator=(rhs);
     }
@@ -28,9 +60,25 @@ PresidentialPardonForm& PresidentialPardonForm::operator=
 }
 
 PresidentialPardonForm::~PresidentialPardonForm() {
+    std::stringstream ss;
+    ss << "PresidentialPardonForm destroyed: "
+        << "name=\"" << getName() << "\""
+        << ", signed=" << getSigned()
+        << ", grade to sign=" << getGradeToSign()
+        << ", grade to execute=" << getGradeToExecute()
+        << ", target=\"" << _target << "\"";
+    toolbox::logger::StepMark::info(ss.str());
 }
 
 void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
+    std::stringstream ss;
+    ss << "PresidentialPardonForm::execute called: "
+        << "name=\"" << getName() << "\""
+        << ", executor name=\"" << executor.getName() << "\""
+        << ", executor grade=" << executor.getGrade()
+        << ", grade to execute=" << getGradeToExecute()
+        << ", target=\"" << _target << "\"";
+    toolbox::logger::StepMark::info(ss.str());
     AForm::execute(executor);
     std::cout << toolbox::color::green << _target
         << toolbox::color::reset << " has been pardoned by Zaphod Beeblebrox"

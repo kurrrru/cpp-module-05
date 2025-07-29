@@ -131,13 +131,13 @@ void AForm::execute(const Bureaucrat& executor) const {
         << ", grade to execute=" << _gradeToExecute.getGrade();
     toolbox::logger::StepMark::info(ss.str());
     if (_gradeToExecute.getGrade() < executor.getGrade()) {
-        std::stringstream ss;
-        ss << "AForm::execute failed: "
-            << "Bureaucrat \"" << executor.getName()
-            << "\" (grade: " << executor.getGrade()
-            << ") cannot execute form \"" << _name
-            << "\" (grade to execute: " << _gradeToExecute.getGrade() << ")";
-        throw GradeTooLowException(ss.str());
+        std::stringstream errorMsg;
+        errorMsg << "AForm::execute failed: "
+                << "Bureaucrat \"" << executor.getName()
+                << "\" (grade: " << executor.getGrade()
+                << ") cannot execute form \"" << _name
+                << "\" (grade to execute: " << _gradeToExecute.getGrade() << ")";
+        throw GradeTooLowException(errorMsg.str());
     }
     if (!_signed) {
         std::stringstream ss;
