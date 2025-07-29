@@ -7,6 +7,7 @@ SRCS = main.cpp\
 		BureaucratGrade.cpp \
 		AForm.cpp \
 		AFormExceptions.cpp \
+		AFormGrade.cpp \
 		ShrubberyCreationForm.cpp \
 		RobotomyRequestForm.cpp \
 		PresidentialPardonForm.cpp \

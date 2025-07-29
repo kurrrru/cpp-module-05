@@ -23,7 +23,12 @@ int main() {
             bureaucrat.signForm(form);
             bureaucrat.executeForm(form);
         } catch (const std::exception& e) {
-            std::cerr << e.what() << std::endl;
+            std::stringstream ss;
+            ss << "Exception caught: " << e.what();
+            toolbox::logger::StepMark::error(ss.str());
+            std::cerr << toolbox::color::red << "Error: " << e.what()
+                    << toolbox::color::reset
+                    << std::endl;
         }
 
         std::cout << "RobotomyRequestForm" << std::endl;
@@ -38,7 +43,8 @@ int main() {
             ss << "Exception caught: " << e.what();
             toolbox::logger::StepMark::error(ss.str());
             std::cerr << toolbox::color::red << "Error: " << e.what()
-                    << toolbox::color::reset << std::endl;
+                    << toolbox::color::reset
+                    << std::endl;
         }
 
         std::cout << "ShrubberyCreationForm" << std::endl;
@@ -53,7 +59,8 @@ int main() {
             ss << "Exception caught: " << e.what();
             toolbox::logger::StepMark::error(ss.str());
             std::cerr << toolbox::color::red << "Error: " << e.what()
-                    << toolbox::color::reset << std::endl;
+                    << toolbox::color::reset
+                    << std::endl;
         }
     }
 }

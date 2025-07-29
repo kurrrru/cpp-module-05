@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <exception>
 
 #include <ex02/Bureaucrat.hpp>
@@ -10,18 +11,47 @@
 
 AForm::AForm() : _name("default"), _signed(false), _gradeToSign(),
     _gradeToExecute() {
+    std::stringstream ss;
+    ss << "Default AForm created: "
+        << "name=\"" << _name
+        << "\", signed=" << _signed
+        << ", grade to sign=" << _gradeToSign.getGrade()
+        << ", grade to execute=" << _gradeToExecute.getGrade();
+    toolbox::logger::StepMark::info(ss.str());
 }
 
 AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute) :
     _name(name), _signed(false), _gradeToSign(gradeToSign),
     _gradeToExecute(gradeToExecute) {
+    std::stringstream ss;
+    ss << "AForm created: "
+        << "name=\"" << _name
+        << "\", signed=" << _signed
+        << ", grade to sign=" << _gradeToSign.getGrade()
+        << ", grade to execute=" << _gradeToExecute.getGrade();
+    toolbox::logger::StepMark::info(ss.str());
 }
 
 AForm::AForm(const AForm& src) : _name(src._name), _signed(src._signed),
     _gradeToSign(src._gradeToSign), _gradeToExecute(src._gradeToExecute) {
+    std::stringstream ss;
+    ss << "AForm copy created: "
+        << "name=\"" << _name
+        << "\", signed=" << _signed
+        << ", grade to sign=" << _gradeToSign.getGrade()
+        << ", grade to execute=" << _gradeToExecute.getGrade();
+    toolbox::logger::StepMark::info(ss.str());
 }
 
+// const member variables cannot be reassigned
 AForm& AForm::operator=(const AForm& rhs) {
+    std::stringstream ss;
+    ss << "AForm assignment operator called: "
+        << "name=\"" << rhs._name
+        << "\", signed=" << rhs._signed
+        << ", grade to sign=" << rhs._gradeToSign.getGrade()
+        << ", grade to execute=" << rhs._gradeToExecute.getGrade();
+    toolbox::logger::StepMark::info(ss.str());
     if (this != &rhs) {
         _signed = rhs._signed;
     }
@@ -29,75 +59,97 @@ AForm& AForm::operator=(const AForm& rhs) {
 }
 
 AForm::~AForm() {
+    std::stringstream ss;
+    ss << "AForm destroyed: "
+        << "name=\"" << _name
+        << "\", signed=" << _signed
+        << ", grade to sign=" << _gradeToSign.getGrade()
+        << ", grade to execute=" << _gradeToExecute.getGrade();
+    toolbox::logger::StepMark::info(ss.str());
 }
 
 std::string AForm::getName() const {
+    std::stringstream ss;
+    ss << "AForm::getName called: name=\"" << _name << "\"";
+    toolbox::logger::StepMark::debug(ss.str());
     return _name;
 }
 
 bool AForm::getSigned() const {
+    std::stringstream ss;
+    ss << "AForm::getSigned called: name=\"" << _name
+        << "\", signed=" << _signed;
+    toolbox::logger::StepMark::debug(ss.str());
     return _signed;
 }
 
 int AForm::getGradeToSign() const {
+    std::stringstream ss;
+    ss << "AForm::getGradeToSign called: name=\"" << _name
+        << "\", grade to sign=" << _gradeToSign.getGrade();
+    toolbox::logger::StepMark::debug(ss.str());
     return _gradeToSign.getGrade();
 }
 
 int AForm::getGradeToExecute() const {
+    std::stringstream ss;
+    ss << "AForm::getGradeToExecute called: name=\"" << _name
+        << "\", grade to execute=" << _gradeToExecute.getGrade();
+    toolbox::logger::StepMark::debug(ss.str());
     return _gradeToExecute.getGrade();
 }
 
 bool AForm::beSigned(const Bureaucrat& bureaucrat) {
+    std::stringstream ss;
+    ss << "AForm::beSigned called: name=\"" << _name
+        << "\", bureaucrat name=\"" << bureaucrat.getName()
+        << "\", bureaucrat grade=" << bureaucrat.getGrade()
+        << ", grade to sign=" << _gradeToSign.getGrade()
+        << ", old signed=" << _signed;
+    toolbox::logger::StepMark::info(ss.str());
     if (_signed) {
         return false;
     }
     if (bureaucrat.getGrade() > _gradeToSign.getGrade()) {
-        throw GradeTooLowException();
+        std::stringstream ss;
+        ss << "AForm::beSigned failed: "
+            << "Bureaucrat \"" << bureaucrat.getName()
+            << "\" (grade: " << bureaucrat.getGrade()
+            << ") cannot sign form \"" << _name
+            << "\" (grade to sign: " << _gradeToSign.getGrade() << ")";
+        throw GradeTooLowException(ss.str());
     }
     _signed = true;
     return true;
 }
 
-AForm::Grade::Grade() : _grade(_minGrade) {
-}
-
-AForm::Grade::Grade(int grade) {
-    if (grade < _maxGrade) {
-        throw GradeTooHighException();
-    } else if (grade > _minGrade) {
-        throw GradeTooLowException();
-    }
-    _grade = grade;
-}
-
-AForm::Grade::Grade(const Grade& src) : _grade(src._grade) {
-}
-
-AForm::Grade& AForm::Grade::operator=(const Grade& rhs) {
-    if (this != &rhs) {
-        _grade = rhs._grade;
-    }
-    return *this;
-}
-
-AForm::Grade::~Grade() {
-}
-
-int AForm::Grade::getGrade() const {
-    return _grade;
-}
-
 void AForm::execute(const Bureaucrat& executor) const {
+    std::stringstream ss;
+    ss << "AForm::execute called: name=\"" << _name
+        << "\", executor name=\"" << executor.getName()
+        << "\", executor grade=" << executor.getGrade()
+        << ", grade to execute=" << _gradeToExecute.getGrade();
+    toolbox::logger::StepMark::info(ss.str());
     if (_gradeToExecute.getGrade() < executor.getGrade()) {
-        throw GradeTooLowException();
+        std::stringstream ss;
+        ss << "AForm::execute failed: "
+            << "Bureaucrat \"" << executor.getName()
+            << "\" (grade: " << executor.getGrade()
+            << ") cannot execute form \"" << _name
+            << "\" (grade to execute: " << _gradeToExecute.getGrade() << ")";
+        throw GradeTooLowException(ss.str());
     }
     if (!_signed) {
-        throw FormNotSignedException();
+        std::stringstream ss;
+        ss << "AForm::execute failed: "
+            << "Form \"" << _name
+            << "\" is not signed, cannot execute";
+        throw FormNotSignedException(ss.str());
     }
 }
 
 std::ostream& operator<<(std::ostream& os, const AForm& form) {
-    os << "Form: "
+    os << "AForm: "
         << toolbox::color::green << form.getName()
         << toolbox::color::reset << ", signed: "
         << toolbox::color::yellow << form.getSigned()
