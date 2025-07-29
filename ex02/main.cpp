@@ -11,6 +11,8 @@
 #include <toolbox/stepmark.hpp>
 
 int main() {
+    toolbox::logger::StepMark::setLogFile("bureaucrat.log");
+    toolbox::logger::StepMark::setLevel(toolbox::logger::NOTICE);
     for (int i = -29; i <= 180; i += 30) {
         std::cout << "i = " << i << std::endl;
         std::cout << "PresidentialPardonForm" << std::endl;

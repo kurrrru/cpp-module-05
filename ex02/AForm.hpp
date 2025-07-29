@@ -23,19 +23,38 @@ class AForm {
     bool beSigned(const Bureaucrat& bureaucrat);
     virtual void execute(const Bureaucrat& executor) const = 0;
 
-    class GradeTooHighException : public std::exception {
+    class GradeInvalidException : public std::exception {
      public:
+        explicit GradeInvalidException(
+            const std::string& message = "Grade is invalid");
         virtual const char* what() const throw();
+        virtual ~GradeInvalidException() throw();
+     private:
+        std::string _message;
     };
 
-    class GradeTooLowException : public std::exception {
+    class GradeTooHighException : public GradeInvalidException {
      public:
-        virtual const char* what() const throw();
+        explicit GradeTooHighException(
+            const std::string& message = "Grade is too high");
+        virtual ~GradeTooHighException() throw();
+    };
+
+    class GradeTooLowException : public GradeInvalidException {
+     public:
+        explicit GradeTooLowException(
+            const std::string& message = "Grade is too low");
+        virtual ~GradeTooLowException() throw();
     };
 
     class FormNotSignedException : public std::exception {
      public:
+        explicit FormNotSignedException(
+            const std::string& message = "Form is not signed");
         virtual const char* what() const throw();
+        virtual ~FormNotSignedException() throw();
+     private:
+        std::string _message;
     };
 
  private:
@@ -59,4 +78,4 @@ class AForm {
     const Grade _gradeToExecute;
 };
 
-std::ostream& operator<<(std::ostream& os, const AForm& AForm);
+std::ostream& operator<<(std::ostream& os, const AForm& form);
