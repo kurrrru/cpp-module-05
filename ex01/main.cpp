@@ -10,7 +10,7 @@
 
 int main(void) {
     toolbox::logger::StepMark::setLogFile("bureaucrat.log");
-    toolbox::logger::StepMark::setLevel(toolbox::logger::NOTICE);
+    toolbox::logger::StepMark::setLevel(toolbox::logger::INFO);
     try {
         Bureaucrat bureaucrats[5] = {
             Bureaucrat("best bureaucrat", 1),
