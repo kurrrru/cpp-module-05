@@ -1,33 +1,45 @@
-#include "Bureaucrat.hpp"
+#include <ex03/Bureaucrat.hpp>
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
-namespace {
-namespace color {
-const char red[] = "\033[1;31m";
-const char green[] = "\033[1;32m";
-// const char yellow[] = "\033[1;33m";
-const char blue[] = "\033[1;34m";
-// const char magenta[] = "\033[1;35m";
-const char cyan[] = "\033[1;36m";
-const char reset[] = "\033[0m";
-}
-}  // namespace
+#include <toolbox/color.hpp>
+#include <toolbox/stepmark.hpp>
 
 Bureaucrat::Bureaucrat() : _name("default"), _grade() {
+    std::stringstream logMsg;
+    logMsg << "Default Bureaucrat created: "
+        << "name=\"" << _name
+        << "\", grade=" << _grade.getGrade();
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name),
     _grade(grade) {
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat created: "
+        << "name=\"" << _name
+        << "\", grade=" << _grade.getGrade();
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& src) : _name(src._name),
     _grade(src._grade) {
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat copy created: "
+        << "name=\"" << _name
+        << "\", grade=" << _grade.getGrade();
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 // name is a const member variable, so it cannot be reassigned
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs) {
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat assignment operator called: "
+        << "name=\"" << rhs._name
+        << "\", grade=" << rhs._grade.getGrade();
+    toolbox::logger::StepMark::info(logMsg.str());
     if (this != &rhs) {
         _grade = rhs._grade;
     }
@@ -35,112 +47,113 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs) {
 }
 
 Bureaucrat::~Bureaucrat() {
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat destroyed: "
+        << "name=\"" << _name
+        << "\", grade=" << _grade.getGrade();
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 std::string Bureaucrat::getName() const {
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat::getName called: name=\"" << _name << "\"";
+    toolbox::logger::StepMark::debug(logMsg.str());
     return _name;
 }
 
 int Bureaucrat::getGrade() const {
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat::getGrade called: name=\"" << _name
+        << "\", grade=" << _grade.getGrade();
+    toolbox::logger::StepMark::debug(logMsg.str());
     return _grade.getGrade();
 }
 
 void Bureaucrat::incrementGrade() {
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat::incrementGrade called: name=\"" << _name
+        << "\", old grade=" << _grade.getGrade()
+        << ", new grade=" << _grade.getGrade() - 1;
+    toolbox::logger::StepMark::info(logMsg.str());
     _grade.increment();
 }
 
 void Bureaucrat::decrementGrade() {
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat::decrementGrade called: name=\"" << _name
+        << "\", old grade=" << _grade.getGrade()
+        << ", new grade=" << _grade.getGrade() + 1;
+    toolbox::logger::StepMark::info(logMsg.str());
     _grade.decrement();
 }
 
 void Bureaucrat::signForm(AForm& form) {
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat::signForm called: name=\"" << _name
+        << "\" (grade: " << _grade.getGrade() << "), "
+        << "signing form: " << form.getName()
+        << " (grade to sign: " << form.getGradeToSign() << ")";
+    toolbox::logger::StepMark::notice(logMsg.str());
     try {
         if (form.beSigned(*this)) {
-            std::cout << color::blue << getName() << color::reset << " signed "
-                << color::green << form.getName() << color::reset << std::endl;
+            std::cout << toolbox::color::blue << getName()
+                << toolbox::color::reset << " signed "
+                << toolbox::color::green << form.getName()
+                << toolbox::color::reset
+                << std::endl;
         } else {
-            std::cout << color::blue << getName() << color::reset
-                << " couldn't sign "
-                << color::green << form.getName() << color::reset
-                << " because it's already signed" << std::endl;
+            std::cout << toolbox::color::blue << getName()
+                << toolbox::color::reset << " couldn't sign "
+                << toolbox::color::green << form.getName()
+                << toolbox::color::reset << " because it's already signed"
+                << std::endl;
         }
     } catch (const std::exception& e) {
-        std::cerr << color::blue << getName() << color::reset
-            << " couldn't sign "
-            << color::green << form.getName() << color::reset << " because "
-            << color::red << e.what() << color::reset
+        std::stringstream logMsg;
+        logMsg << "Exception caught: " << e.what();
+        toolbox::logger::StepMark::error(logMsg.str());
+        std::cerr << toolbox::color::blue << getName()
+            << toolbox::color::reset << " couldn't sign "
+            << toolbox::color::green << form.getName()
+            << toolbox::color::reset << " because "
+            << toolbox::color::red << e.what()
+            << toolbox::color::reset
             << std::endl;
     }
 }
 
 void Bureaucrat::executeForm(const AForm& form) {
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat::executeForm called: name=\"" << _name
+        << "\" (grade: " << _grade.getGrade() << "), "
+        << "executing form: " << form.getName()
+        << " (grade to execute: " << form.getGradeToExecute() << ")";
+    toolbox::logger::StepMark::notice(logMsg.str());
     try {
         form.execute(*this);
-        std::cout << color::blue << getName() << color::reset << " executes "
-            << color::green << form.getName() << color::reset << std::endl;
+        std::cout << toolbox::color::blue << getName()
+            << toolbox::color::reset << " executes "
+            << toolbox::color::green << form.getName()
+            << toolbox::color::reset
+            << std::endl;
     } catch (const std::exception& e) {
-        std::cerr << color::blue << getName() << color::reset
-            << " couldn't execute "
-            << color::green << form.getName() << color::reset << " because "
-            << color::red << e.what() << color::reset
+        std::stringstream logMsg;
+        logMsg << "Exception caught: " << e.what();
+        toolbox::logger::StepMark::error(logMsg.str());
+        std::cerr << toolbox::color::blue << getName()
+            << toolbox::color::reset << " couldn't execute "
+            << toolbox::color::green << form.getName()
+            << toolbox::color::reset << " because "
+            << toolbox::color::red << e.what()
+            << toolbox::color::reset
             << std::endl;
     }
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const throw() {
-    return "Grade is too high";
-}
-
-const char* Bureaucrat::GradeTooLowException::what() const throw() {
-    return "Grade is too low";
-}
-
-Bureaucrat::Grade::Grade() : _grade(_minGrade) {
-}
-
-Bureaucrat::Grade::Grade(int grade) {
-    if (grade < _maxGrade) {
-        throw GradeTooHighException();
-    } else if (grade > _minGrade) {
-        throw GradeTooLowException();
-    }
-    _grade = grade;
-}
-
-Bureaucrat::Grade::Grade(const Grade& src) : _grade(src._grade) {
-}
-
-Bureaucrat::Grade& Bureaucrat::Grade::operator=(const Grade& rhs) {
-    if (this != &rhs) {
-        _grade = rhs._grade;
-    }
-    return *this;
-}
-
-Bureaucrat::Grade::~Grade() {
-}
-
-int Bureaucrat::Grade::getGrade() const {
-    return _grade;
-}
-
-void Bureaucrat::Grade::increment() {
-    if (_grade == _maxGrade) {
-        throw GradeTooHighException();
-    }
-    _grade--;
-}
-
-void Bureaucrat::Grade::decrement() {
-    if (_grade == _minGrade) {
-        throw GradeTooLowException();
-    }
-    _grade++;
-}
-
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
-    os << color::cyan << bureaucrat.getName() << color::reset
-        << ", bureaucrat grade " << color::blue << bureaucrat.getGrade()
-        << color::reset;
+    os << toolbox::color::cyan << bureaucrat.getName()
+        << toolbox::color::reset << ", bureaucrat grade "
+        << toolbox::color::blue << bureaucrat.getGrade()
+        << toolbox::color::reset;
     return os;
 }
