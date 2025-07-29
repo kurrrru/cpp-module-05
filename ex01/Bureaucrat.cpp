@@ -99,7 +99,8 @@ void Bureaucrat::signForm(Form& form) {
             std::cout << toolbox::color::blue << getName()
                 << toolbox::color::reset << " signed "
                 << toolbox::color::green << form.getName()
-                << toolbox::color::reset << std::endl;
+                << toolbox::color::reset
+                << std::endl;
         } else {
             std::cout << toolbox::color::blue << getName()
                 << toolbox::color::reset << " couldn't sign "
