@@ -1,11 +1,14 @@
 #include <string>
+#include <sstream>
 #include <iostream>
 
-#include "Bureaucrat.hpp"
-#include "AForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
+#include <ex02/Bureaucrat.hpp>
+#include <ex02/AForm.hpp>
+#include <ex02/PresidentialPardonForm.hpp>
+#include <ex02/RobotomyRequestForm.hpp>
+#include <ex02/ShrubberyCreationForm.hpp>
+#include <toolbox/color.hpp>
+#include <toolbox/stepmark.hpp>
 
 int main() {
     for (int i = -29; i <= 180; i += 30) {
@@ -29,7 +32,11 @@ int main() {
             bureaucrat.signForm(form);
             bureaucrat.executeForm(form);
         } catch (const std::exception& e) {
-            std::cerr << e.what() << std::endl;
+            std::stringstream ss;
+            ss << "Exception caught: " << e.what();
+            toolbox::logger::StepMark::error(ss.str());
+            std::cerr << toolbox::color::red << "Error: " << e.what()
+                    << toolbox::color::reset << std::endl;
         }
 
         std::cout << "ShrubberyCreationForm" << std::endl;
@@ -40,7 +47,11 @@ int main() {
             bureaucrat.signForm(form);
             bureaucrat.executeForm(form);
         } catch (const std::exception& e) {
-            std::cerr << e.what() << std::endl;
+            std::stringstream ss;
+            ss << "Exception caught: " << e.what();
+            toolbox::logger::StepMark::error(ss.str());
+            std::cerr << toolbox::color::red << "Error: " << e.what()
+                    << toolbox::color::reset << std::endl;
         }
     }
 }

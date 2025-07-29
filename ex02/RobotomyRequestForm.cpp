@@ -1,22 +1,14 @@
-#include "RobotomyRequestForm.hpp"
+#include <ex02/RobotomyRequestForm.hpp>
 
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <cstdlib>
 #include <ctime>
 
-namespace {
-namespace color {
-// const char red[] = "\033[1;31m";
-const char green[] = "\033[1;32m";
-// const char yellow[] = "\033[1;33m";
-// const char blue[] = "\033[1;34m";
-// const char magenta[] = "\033[1;35m";
-// const char cyan[] = "\033[1;36m";
-const char reset[] = "\033[0m";
-}
-}  // namespace
+#include <toolbox/color.hpp>
+#include <toolbox/stepmark.hpp>
 
 RobotomyRequestForm::RobotomyRequestForm()
     : AForm("Robotomy Request", 72, 45), _target("default") {
@@ -47,12 +39,12 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const {
     std::srand(std::time(NULL));
     bool success = std::rand() % 2;
     if (success) {
-        std::cout << color::green
-            << _target << color::reset << " robotomization succeeded"
+        std::cout << toolbox::color::green << _target
+            << toolbox::color::reset << " robotomization succeeded"
             << std::endl;
     } else {
-        std::cout << color::green
-            << _target << color::reset << " robotomization failed"
+        std::cout << toolbox::color::green << _target
+            << toolbox::color::reset << " robotomization failed"
             << std::endl;
     }
 }

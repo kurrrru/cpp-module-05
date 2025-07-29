@@ -4,7 +4,7 @@
 #include <iostream>
 #include <exception>
 
-#include "AForm.hpp"
+#include <ex02/AForm.hpp>
 
 class ShrubberyCreationForm : public AForm {
  public:

@@ -1,20 +1,12 @@
-#include "AForm.hpp"
+#include <ex02/AForm.hpp>
 
 #include <iostream>
 #include <string>
 #include <exception>
 
-namespace {
-namespace color {
-// const char red[] = "\033[1;31m";
-const char green[] = "\033[1;32m";
-const char yellow[] = "\033[1;33m";
-// const char blue[] = "\033[1;34m";
-const char magenta[] = "\033[1;35m";
-// const char cyan[] = "\033[1;36m";
-const char reset[] = "\033[0m";
-}
-}  // namespace
+#include <ex02/Bureaucrat.hpp>
+#include <toolbox/color.hpp>
+#include <toolbox/stepmark.hpp>
 
 AForm::AForm() : _name("default"), _signed(false), _gradeToSign(),
     _gradeToExecute() {
@@ -117,11 +109,14 @@ void AForm::execute(const Bureaucrat& executor) const {
 }
 
 std::ostream& operator<<(std::ostream& os, const AForm& form) {
-    os << "Form: " << color::green << form.getName() << color::reset << ", "
-        << "signed: " << color::yellow << form.getSigned() << color::reset
-        << ", " << "grade to sign: " << color::magenta
-        << form.getGradeToSign() << color::reset << ", "
-        << "grade to execute: " << color::magenta
-        << form.getGradeToExecute() << color::reset;
+    os << "Form: "
+        << toolbox::color::green << form.getName()
+        << toolbox::color::reset << ", signed: "
+        << toolbox::color::yellow << form.getSigned()
+        << toolbox::color::reset << ", grade to sign: "
+        << toolbox::color::magenta << form.getGradeToSign()
+        << toolbox::color::reset << ", grade to execute: "
+        << toolbox::color::magenta << form.getGradeToExecute()
+        << toolbox::color::reset;
     return os;
 }

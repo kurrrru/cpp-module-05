@@ -1,14 +1,22 @@
 NAME = bureaucrat
 
 # sources
-SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
-		RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+SRCS = main.cpp\
+		Bureaucrat.cpp \
+		BureaucratExceptions.cpp \
+		BureaucratGrade.cpp \
+		AForm.cpp \
+		ShrubberyCreationForm.cpp \
+		RobotomyRequestForm.cpp \
+		PresidentialPardonForm.cpp \
+		../toolbox/color.cpp \
+		../toolbox/stepmark.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 # compiler
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I..
 
 # rules
 all: $(NAME)
