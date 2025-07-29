@@ -17,17 +17,17 @@ AForm::Grade::Grade(int grade) {
     ss << "AForm::Grade constructor called: grade=" << grade;
     toolbox::logger::StepMark::trace(ss.str());
     if (grade < _maxGrade) {
-        std::stringstream ss;
-        ss << "AForm::Grade::Grade(int grade) failed: Grade is too high: "
+        std::stringstream errMsg;
+        errMsg << "AForm::Grade::Grade(int grade) failed: Grade is too high: "
             << "The grade must be between maxGrade=" << _maxGrade
             << " and minGrade=" << _minGrade << ". Provided grade=" << grade;
-        throw GradeTooHighException(ss.str());
+        throw GradeTooHighException(errMsg.str());
     } else if (grade > _minGrade) {
-        std::stringstream ss;
-        ss << "AForm::Grade::Grade(int grade) failed: Grade is too low: "
+        std::stringstream errMsg;
+        errMsg << "AForm::Grade::Grade(int grade) failed: Grade is too low: "
             << "The grade must be between maxGrade=" << _maxGrade
             << " and minGrade=" << _minGrade << ". Provided grade=" << grade;
-        throw GradeTooLowException(ss.str());
+        throw GradeTooLowException(errMsg.str());
     }
     _grade = grade;
 }

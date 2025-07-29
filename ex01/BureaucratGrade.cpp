@@ -17,17 +17,17 @@ Bureaucrat::Grade::Grade(int grade) {
     ss << "Bureaucrat::Grade constructor called: grade=" << grade;
     toolbox::logger::StepMark::trace(ss.str());
     if (grade < _maxGrade) {
-        std::stringstream ss;
-        ss << "Bureaucrat::Grade::Grade(int grade) failed: Grade is too high: "
+        std::stringstream errMsg;
+        errMsg << "Bureaucrat::Grade::Grade(int grade) failed: Grade is too high: "
             << "The grade must be between maxGrade=" << _maxGrade
             << " and minGrade=" << _minGrade << ". Provided grade=" << grade;
-        throw GradeTooHighException(ss.str());
+        throw GradeTooHighException(errMsg.str());
     } else if (grade > _minGrade) {
-        std::stringstream ss;
-        ss << "Bureaucrat::Grade::Grade(int grade) failed: Grade is too low: "
+        std::stringstream errMsg;
+        errMsg << "Bureaucrat::Grade::Grade(int grade) failed: Grade is too low: "
             << "The grade must be between maxGrade=" << _maxGrade
             << " and minGrade=" << _minGrade << ". Provided grade=" << grade;
-        throw GradeTooLowException(ss.str());
+        throw GradeTooLowException(errMsg.str());
     }
     _grade = grade;
 }
@@ -67,12 +67,12 @@ void Bureaucrat::Grade::increment() {
         << _grade << ", new grade=" << _grade - 1;
     toolbox::logger::StepMark::debug(ss.str());
     if (_grade == _maxGrade) {
-        std::stringstream ss;
-        ss << "Bureaucrat::Grade::increment() failed: Grade is too high: "
+        std::stringstream errMsg;
+        errMsg << "Bureaucrat::Grade::increment() failed: Grade is too high: "
             << "The grade must be between maxGrade=" << _maxGrade
             << " and minGrade=" << _minGrade << ". Old grade=" << _grade
             << " and new grade=" << _grade - 1;
-        throw GradeTooHighException(ss.str());
+        throw GradeTooHighException(errMsg.str());
     }
     _grade--;
 }
@@ -83,12 +83,12 @@ void Bureaucrat::Grade::decrement() {
         << _grade << ", new grade=" << _grade + 1;
     toolbox::logger::StepMark::debug(ss.str());
     if (_grade == _minGrade) {
-        std::stringstream ss;
-        ss << "Bureaucrat::Grade::decrement() failed: Grade is too low: "
+        std::stringstream errMsg;
+        errMsg << "Bureaucrat::Grade::decrement() failed: Grade is too low: "
             << "The grade must be between maxGrade=" << _maxGrade
             << " and minGrade=" << _minGrade << ". Old grade=" << _grade
             << " and new grade=" << _grade + 1;
-        throw GradeTooLowException(ss.str());
+        throw GradeTooLowException(errMsg.str());
     }
     _grade++;
 }

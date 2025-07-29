@@ -86,9 +86,9 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
     std::string filename = _target + "_shrubbery";
     std::ofstream file(filename.c_str());
     if (!file.is_open()) {
-        std::stringstream errorMsg;
-        errorMsg << "Failed to create file: " << filename;
-        throw FileCreationException(errorMsg.str());
+        std::stringstream errMsg;
+        errMsg << "Failed to create file: " << filename;
+        throw FileCreationException(errMsg.str());
     }
 
     std::srand(std::time(NULL));

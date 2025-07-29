@@ -111,13 +111,13 @@ bool AForm::beSigned(const Bureaucrat& bureaucrat) {
         return false;
     }
     if (bureaucrat.getGrade() > _gradeToSign.getGrade()) {
-        std::stringstream ss;
-        ss << "AForm::beSigned failed: "
+        std::stringstream errMsg;
+        errMsg << "AForm::beSigned failed: "
             << "Bureaucrat \"" << bureaucrat.getName()
             << "\" (grade: " << bureaucrat.getGrade()
             << ") cannot sign form \"" << _name
             << "\" (grade to sign: " << _gradeToSign.getGrade() << ")";
-        throw GradeTooLowException(ss.str());
+        throw GradeTooLowException(errMsg.str());
     }
     _signed = true;
     return true;
@@ -131,20 +131,20 @@ void AForm::execute(const Bureaucrat& executor) const {
         << ", grade to execute=" << _gradeToExecute.getGrade();
     toolbox::logger::StepMark::info(ss.str());
     if (_gradeToExecute.getGrade() < executor.getGrade()) {
-        std::stringstream errorMsg;
-        errorMsg << "AForm::execute failed: "
+        std::stringstream errMsg;
+        errMsg << "AForm::execute failed: "
                 << "Bureaucrat \"" << executor.getName()
                 << "\" (grade: " << executor.getGrade()
                 << ") cannot execute form \"" << _name
                 << "\" (grade to execute: " << _gradeToExecute.getGrade() << ")";
-        throw GradeTooLowException(errorMsg.str());
+        throw GradeTooLowException(errMsg.str());
     }
     if (!_signed) {
-        std::stringstream ss;
-        ss << "AForm::execute failed: "
+        std::stringstream errMsg;
+        errMsg << "AForm::execute failed: "
             << "Form \"" << _name
             << "\" is not signed, cannot execute";
-        throw FormNotSignedException(ss.str());
+        throw FormNotSignedException(errMsg.str());
     }
 }
 

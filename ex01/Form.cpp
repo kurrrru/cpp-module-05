@@ -110,13 +110,13 @@ bool Form::beSigned(const Bureaucrat& bureaucrat) {
         return false;
     }
     if (bureaucrat.getGrade() > _gradeToSign.getGrade()) {
-        std::stringstream ss;
-        ss << "Form::beSigned failed: "
+        std::stringstream errMsg;
+        errMsg << "Form::beSigned failed: "
             << "Bureaucrat \"" << bureaucrat.getName()
             << "\" (grade: " << bureaucrat.getGrade()
             << ") cannot sign form \"" << _name
             << "\" (grade to sign: " << _gradeToSign.getGrade() << ")";
-        throw GradeTooLowException(ss.str());
+        throw GradeTooLowException(errMsg.str());
     }
     _signed = true;
     return true;
