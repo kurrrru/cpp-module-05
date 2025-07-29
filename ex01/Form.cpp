@@ -10,47 +10,47 @@
 
 Form::Form() : _name("default"), _signed(false), _gradeToSign(),
     _gradeToExecute() {
-    std::stringstream ss;
-    ss << "Default Form created: "
+    std::stringstream logMsg;
+    logMsg << "Default Form created: "
         << "name=\"" << _name
         << "\", signed=" << _signed
         << ", grade to sign=" << _gradeToSign.getGrade()
         << ", grade to execute=" << _gradeToExecute.getGrade();
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 Form::Form(const std::string& name, int gradeToSign, int gradeToExecute) :
     _name(name), _signed(false), _gradeToSign(gradeToSign),
     _gradeToExecute(gradeToExecute) {
-    std::stringstream ss;
-    ss << "Form created: "
+    std::stringstream logMsg;
+    logMsg << "Form created: "
         << "name=\"" << _name
         << "\", signed=" << _signed
         << ", grade to sign=" << _gradeToSign.getGrade()
         << ", grade to execute=" << _gradeToExecute.getGrade();
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 Form::Form(const Form& src) : _name(src._name), _signed(src._signed),
     _gradeToSign(src._gradeToSign), _gradeToExecute(src._gradeToExecute) {
-    std::stringstream ss;
-    ss << "Form copy created: "
+    std::stringstream logMsg;
+    logMsg << "Form copy created: "
         << "name=\"" << _name
         << "\", signed=" << _signed
         << ", grade to sign=" << _gradeToSign.getGrade()
         << ", grade to execute=" << _gradeToExecute.getGrade();
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 // const member variables cannot be reassigned
 Form& Form::operator=(const Form& rhs) {
-    std::stringstream ss;
-    ss << "Form assignment operator called: "
+    std::stringstream logMsg;
+    logMsg << "Form assignment operator called: "
         << "name=\"" << rhs._name
         << "\", signed=" << rhs._signed
         << ", grade to sign=" << rhs._gradeToSign.getGrade()
         << ", grade to execute=" << rhs._gradeToExecute.getGrade();
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
     if (this != &rhs) {
         _signed = rhs._signed;
     }
@@ -58,54 +58,54 @@ Form& Form::operator=(const Form& rhs) {
 }
 
 Form::~Form() {
-    std::stringstream ss;
-    ss << "Form destroyed: "
+    std::stringstream logMsg;
+    logMsg << "Form destroyed: "
         << "name=\"" << _name
         << "\", signed=" << _signed
         << ", grade to sign=" << _gradeToSign.getGrade()
         << ", grade to execute=" << _gradeToExecute.getGrade();
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 std::string Form::getName() const {
-    std::stringstream ss;
-    ss << "Form::getName called: name=\"" << _name << "\"";
-    toolbox::logger::StepMark::debug(ss.str());
+    std::stringstream logMsg;
+    logMsg << "Form::getName called: name=\"" << _name << "\"";
+    toolbox::logger::StepMark::debug(logMsg.str());
     return _name;
 }
 
 bool Form::getSigned() const {
-    std::stringstream ss;
-    ss << "Form::getSigned called: name=\"" << _name
+    std::stringstream logMsg;
+    logMsg << "Form::getSigned called: name=\"" << _name
         << "\", signed=" << _signed;
-    toolbox::logger::StepMark::debug(ss.str());
+    toolbox::logger::StepMark::debug(logMsg.str());
     return _signed;
 }
 
 int Form::getGradeToSign() const {
-    std::stringstream ss;
-    ss << "Form::getGradeToSign called: name=\"" << _name
+    std::stringstream logMsg;
+    logMsg << "Form::getGradeToSign called: name=\"" << _name
         << "\", grade to sign=" << _gradeToSign.getGrade();
-    toolbox::logger::StepMark::debug(ss.str());
+    toolbox::logger::StepMark::debug(logMsg.str());
     return _gradeToSign.getGrade();
 }
 
 int Form::getGradeToExecute() const {
-    std::stringstream ss;
-    ss << "Form::getGradeToExecute called: name=\"" << _name
+    std::stringstream logMsg;
+    logMsg << "Form::getGradeToExecute called: name=\"" << _name
         << "\", grade to execute=" << _gradeToExecute.getGrade();
-    toolbox::logger::StepMark::debug(ss.str());
+    toolbox::logger::StepMark::debug(logMsg.str());
     return _gradeToExecute.getGrade();
 }
 
 bool Form::beSigned(const Bureaucrat& bureaucrat) {
-    std::stringstream ss;
-    ss << "Form::beSigned called: name=\"" << _name
+    std::stringstream logMsg;
+    logMsg << "Form::beSigned called: name=\"" << _name
         << "\", bureaucrat name=\"" << bureaucrat.getName()
         << "\", bureaucrat grade=" << bureaucrat.getGrade()
         << ", grade to sign=" << _gradeToSign.getGrade()
         << ", old signed=" << _signed;
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
     if (_signed) {
         return false;
     }

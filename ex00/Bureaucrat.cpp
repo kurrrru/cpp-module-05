@@ -8,38 +8,38 @@
 #include <toolbox/stepmark.hpp>
 
 Bureaucrat::Bureaucrat() : _name("default"), _grade() {
-    std::stringstream ss;
-    ss << "Default Bureaucrat created: "
+    std::stringstream logMsg;
+    logMsg << "Default Bureaucrat created: "
         << "name=\"" << _name
         << "\", grade=" << _grade.getGrade();
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name),
     _grade(grade) {
-    std::stringstream ss;
-    ss << "Bureaucrat created: "
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat created: "
         << "name=\"" << _name
         << "\", grade=" << _grade.getGrade();
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& src) : _name(src._name),
     _grade(src._grade) {
-    std::stringstream ss;
-    ss << "Bureaucrat copy created: "
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat copy created: "
         << "name=\"" << _name
         << "\", grade=" << _grade.getGrade();
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 // name is a const member variable, so it cannot be reassigned
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs) {
-    std::stringstream ss;
-    ss << "Bureaucrat assignment operator called: "
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat assignment operator called: "
         << "name=\"" << rhs._name
         << "\", grade=" << rhs._grade.getGrade();
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
     if (this != &rhs) {
         _grade = rhs._grade;
     }
@@ -47,52 +47,52 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs) {
 }
 
 Bureaucrat::~Bureaucrat() {
-    std::stringstream ss;
-    ss << "Bureaucrat destroyed: "
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat destroyed: "
         << "name=\"" << _name
         << "\", grade=" << _grade.getGrade();
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 std::string Bureaucrat::getName() const {
-    std::stringstream ss;
-    ss << "Bureaucrat::getName called: name=\"" << _name << "\"";
-    toolbox::logger::StepMark::debug(ss.str());
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat::getName called: name=\"" << _name << "\"";
+    toolbox::logger::StepMark::debug(logMsg.str());
     return _name;
 }
 
 int Bureaucrat::getGrade() const {
-    std::stringstream ss;
-    ss << "Bureaucrat::getGrade called: name=\"" << _name
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat::getGrade called: name=\"" << _name
         << "\", grade=" << _grade.getGrade();
-    toolbox::logger::StepMark::debug(ss.str());
+    toolbox::logger::StepMark::debug(logMsg.str());
     return _grade.getGrade();
 }
 
 void Bureaucrat::incrementGrade() {
-    std::stringstream ss;
-    ss << "Bureaucrat::incrementGrade called: name=\"" << _name
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat::incrementGrade called: name=\"" << _name
         << "\", old grade=" << _grade.getGrade()
         << ", new grade=" << _grade.getGrade() - 1;
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
     _grade.increment();
 }
 
 void Bureaucrat::decrementGrade() {
-    std::stringstream ss;
-    ss << "Bureaucrat::decrementGrade called: name=\"" << _name
+    std::stringstream logMsg;
+    logMsg << "Bureaucrat::decrementGrade called: name=\"" << _name
         << "\", old grade=" << _grade.getGrade()
         << ", new grade=" << _grade.getGrade() + 1;
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
     _grade.decrement();
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
-    std::stringstream ss;
-    ss << "operator<< for Bureaucrat: "
+    std::stringstream logMsg;
+    logMsg << "operator<< for Bureaucrat: "
         << "name=\"" << bureaucrat.getName()
         << "\", grade=" << bureaucrat.getGrade();
-    toolbox::logger::StepMark::debug(ss.str());
+    toolbox::logger::StepMark::debug(logMsg.str());
 
     os << toolbox::color::cyan << bureaucrat.getName()
         << toolbox::color::reset << ", bureaucrat grade "

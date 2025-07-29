@@ -12,50 +12,50 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm()
     : AForm("Shrubbery Creation", 145, 137), _target("default") {
-    std::stringstream ss;
-    ss << "Default ShrubberyCreationForm created: "
+    std::stringstream logMsg;
+    logMsg << "Default ShrubberyCreationForm created: "
         << "name=\"" << getName() << "\""
         << ", signed=" << getSigned()
         << ", grade to sign=" << getGradeToSign()
         << ", grade to execute=" << getGradeToExecute()
         << ", target=\"" << _target << "\"";
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
     : AForm("Shrubbery Creation", 145, 137), _target(target) {
-    std::stringstream ss;
-    ss << "ShrubberyCreationForm created: "
+    std::stringstream logMsg;
+    logMsg << "ShrubberyCreationForm created: "
         << "name=\"" << getName() << "\""
         << ", signed=" << getSigned()
         << ", grade to sign=" << getGradeToSign()
         << ", grade to execute=" << getGradeToExecute()
         << ", target=\"" << _target << "\"";
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src)
     : AForm(src), _target(src._target) {
-    std::stringstream ss;
-    ss << "ShrubberyCreationForm copy created: "
+    std::stringstream logMsg;
+    logMsg << "ShrubberyCreationForm copy created: "
         << "name=\"" << getName() << "\""
         << ", signed=" << getSigned()
         << ", grade to sign=" << getGradeToSign()
         << ", grade to execute=" << getGradeToExecute()
         << ", target=\"" << _target << "\"";
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=
     (const ShrubberyCreationForm& rhs) {
-    std::stringstream ss;
-    ss << "ShrubberyCreationForm assignment operator called: "
+    std::stringstream logMsg;
+    logMsg << "ShrubberyCreationForm assignment operator called: "
         << "name=\"" << getName() << "\""
         << ", signed=" << getSigned()
         << ", grade to sign=" << getGradeToSign()
         << ", grade to execute=" << getGradeToExecute()
         << ", target=\"" << _target << "\"";
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
     if (this != &rhs) {
         AForm::operator=(rhs);
     }
@@ -63,24 +63,24 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {
-    std::stringstream ss;
-    ss << "ShrubberyCreationForm destroyed: "
+    std::stringstream logMsg;
+    logMsg << "ShrubberyCreationForm destroyed: "
         << "name=\"" << getName() << "\""
         << ", signed=" << getSigned()
         << ", grade to sign=" << getGradeToSign()
         << ", grade to execute=" << getGradeToExecute()
         << ", target=\"" << _target << "\"";
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }
 
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
-    std::stringstream ss;
-    ss << "ShrubberyCreationForm::execute called: name=\"" << getName()
+    std::stringstream logMsg;
+    logMsg << "ShrubberyCreationForm::execute called: name=\"" << getName()
         << "\", executor name=\"" << executor.getName()
         << "\", executor grade=" << executor.getGrade()
         << ", grade to execute=" << getGradeToExecute()
         << ", target=\"" << _target << "\"";
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 
     AForm::execute(executor);
     std::string filename = _target + "_shrubbery";
@@ -116,21 +116,21 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
 ShrubberyCreationForm::FileCreationException::FileCreationException(
     const std::string& message)
     : _message(message) {
-    std::stringstream ss;
-    ss << "ShrubberyCreationForm::FileCreationException: " << _message;
-    toolbox::logger::StepMark::warning(ss.str());
+    std::stringstream logMsg;
+    logMsg << "ShrubberyCreationForm::FileCreationException: " << _message;
+    toolbox::logger::StepMark::warning(logMsg.str());
 }
 
 const char* ShrubberyCreationForm::FileCreationException::what() const throw() {
-    std::stringstream ss;
-    ss << "ShrubberyCreationForm::FileCreationException: " << _message;
-    toolbox::logger::StepMark::debug(ss.str());
+    std::stringstream logMsg;
+    logMsg << "ShrubberyCreationForm::FileCreationException: " << _message;
+    toolbox::logger::StepMark::debug(logMsg.str());
     return _message.c_str();
 }
 
 ShrubberyCreationForm::FileCreationException::~FileCreationException() throw() {
-    std::stringstream ss;
-    ss << "ShrubberyCreationForm::FileCreationException destroyed: "
+    std::stringstream logMsg;
+    logMsg << "ShrubberyCreationForm::FileCreationException destroyed: "
         << _message;
-    toolbox::logger::StepMark::info(ss.str());
+    toolbox::logger::StepMark::info(logMsg.str());
 }

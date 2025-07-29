@@ -23,9 +23,9 @@ int main(void) {
             bureaucrat.decrementGrade();
             std::cout << "Grade: " << bureaucrat.getGrade() << std::endl;
         } catch (const std::exception& e) {
-            std::stringstream ss;
-            ss << "Exception caught: " << e.what();
-            toolbox::logger::StepMark::error(ss.str());
+            std::stringstream logMsg;
+            logMsg << "Exception caught: " << e.what();
+            toolbox::logger::StepMark::error(logMsg.str());
             std::cerr << toolbox::color::red << "Error: " << e.what()
                     << toolbox::color::reset
                     << std::endl;
@@ -43,9 +43,9 @@ int main(void) {
             bureaucrat.decrementGrade();
             std::cout << "Grade: " << bureaucrat.getGrade() << std::endl;
         } catch (const std::exception& e) {
-            std::stringstream ss;
-            ss << "Exception caught: " << e.what();
-            toolbox::logger::StepMark::error(ss.str());
+            std::stringstream logMsg;
+            logMsg << "Exception caught: " << e.what();
+            toolbox::logger::StepMark::error(logMsg.str());
             std::cerr << toolbox::color::red << "Error: " << e.what()
                     << toolbox::color::reset
                     << std::endl;
