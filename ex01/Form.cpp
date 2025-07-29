@@ -123,13 +123,14 @@ bool Form::beSigned(const Bureaucrat& bureaucrat) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& form) {
-    os << toolbox::color::green << "Form: "
-        << toolbox::color::reset << form.getName() << ", "
-        << toolbox::color::green << "signed: "
-        << toolbox::color::reset << form.getSigned() << ", "
-        << toolbox::color::green << "grade to sign: "
-        << toolbox::color::reset << form.getGradeToSign() << ", "
-        << toolbox::color::green << "grade to execute: "
-        << toolbox::color::reset << form.getGradeToExecute();
+    os << "Form: "
+        << toolbox::color::green << form.getName()
+        << toolbox::color::reset << ", signed: "
+        << toolbox::color::yellow << form.getSigned()
+        << toolbox::color::reset << ", grade to sign: "
+        << toolbox::color::magenta << form.getGradeToSign()
+        << toolbox::color::reset << ", grade to execute: "
+        << toolbox::color::magenta << form.getGradeToExecute()
+        << toolbox::color::reset;
     return os;
 }

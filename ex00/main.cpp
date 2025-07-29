@@ -27,7 +27,8 @@ int main(void) {
             ss << "Exception caught: " << e.what();
             toolbox::logger::StepMark::error(ss.str());
             std::cerr << toolbox::color::red << "Error: " << e.what()
-                    << toolbox::color::reset << std::endl;
+                    << toolbox::color::reset
+                    << std::endl;
         }
         int j = i + 1;
         std::cout << "j = " << j << std::endl;
@@ -46,7 +47,8 @@ int main(void) {
             ss << "Exception caught: " << e.what();
             toolbox::logger::StepMark::error(ss.str());
             std::cerr << toolbox::color::red << "Error: " << e.what()
-                    << toolbox::color::reset << std::endl;
+                    << toolbox::color::reset
+                    << std::endl;
         }
     }
 }

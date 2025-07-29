@@ -34,6 +34,7 @@ int main(void) {
         ss << "Exception caught: " << e.what();
         toolbox::logger::StepMark::error(ss.str());
         std::cerr << toolbox::color::red << "Error: " << e.what()
-                << toolbox::color::reset << std::endl;
+                << toolbox::color::reset
+                << std::endl;
     }
 }
