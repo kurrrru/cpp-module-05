@@ -1,4 +1,4 @@
-#include "toolbox/color.hpp"
+#include <toolbox/color.hpp>
 
 namespace toolbox {
 namespace color {
