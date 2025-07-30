@@ -1,74 +1,99 @@
-#include "Intern.hpp"
+#include <ex03/Intern.hpp>
 
 #include <string>
+#include <sstream>
 #include <iostream>
 #include <exception>
 
-#include "AForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
+#include <ex03/AForm.hpp>
+#include <ex03/PresidentialPardonForm.hpp>
+#include <ex03/RobotomyRequestForm.hpp>
+#include <ex03/ShrubberyCreationForm.hpp>
+#include <toolbox/color.hpp>
+#include <toolbox/stepmark.hpp>
 
 namespace {
-namespace color {
-const char red[] = "\033[1;31m";
-const char green[] = "\033[1;32m";
-// const char yellow[] = "\033[1;33m";
-// const char blue[] = "\033[1;34m";
-// const char magenta[] = "\033[1;35m";
-// const char cyan[] = "\033[1;36m";
-const char reset[] = "\033[0m";
-}
 
 AForm* createShrubberyCreationForm(const std::string& target) {
+    std::stringstream logMsg;
+    logMsg << "Creating ShrubberyCreationForm with target: " << target;
+    toolbox::logger::StepMark::trace(logMsg.str());
     return new ShrubberyCreationForm(target);
 }
 
 AForm* createRobotomyRequestForm(const std::string& target) {
+    std::stringstream logMsg;
+    logMsg << "Creating RobotomyRequestForm with target: " << target;
+    toolbox::logger::StepMark::trace(logMsg.str());
     return new RobotomyRequestForm(target);
 }
 
 AForm* createPresidentialPardonForm(const std::string& target) {
+    std::stringstream logMsg;
+    logMsg << "Creating PresidentialPardonForm with target: " << target;
     return new PresidentialPardonForm(target);
 }
 
 }  // namespace
 
 Intern::Intern() {
+    std::stringstream logMsg;
+    logMsg << "Intern created";
+    toolbox::logger::StepMark::debug(logMsg.str());
 }
 
 Intern::Intern(const Intern& src) {
+    std::stringstream logMsg;
+    logMsg << "Intern copy created";
+    toolbox::logger::StepMark::debug(logMsg.str());
     (void)src;
 }
 
 Intern& Intern::operator=(const Intern& rhs) {
+    std::stringstream logMsg;
+    logMsg << "Intern assignment operator called";
+    toolbox::logger::StepMark::debug(logMsg.str());
     (void)rhs;
     return *this;
 }
 
 Intern::~Intern() {
+    std::stringstream logMsg;
+    logMsg << "Intern destroyed";
+    toolbox::logger::StepMark::debug(logMsg.str());
 }
 
 AForm* Intern::makeForm(const std::string& formName,
     const std::string& target) {
+    std::stringstream logMsg;
+    logMsg << "Intern::makeForm called with formName: " << formName
+        << ", target: " << target;
+    toolbox::logger::StepMark::info(logMsg.str());
     for (size_t i = 0; i < formInfosSize; ++i) {
         if (formName == formInfos[i].name) {
             AForm* newFormPtr = formInfos[i].create(target);
             std::cout << "Intern creates "
-                << color::green << formName << color::reset
+                << toolbox::color::green << formName
+                << toolbox::color::reset
                 << std::endl;
             return newFormPtr;
         }
     }
-    std::cerr << color::red
-        << "Intern couldn't create form: " << formName << color::reset
+    logMsg.clear();
+    logMsg.str("");
+    logMsg << "Intern could not create form: " << formName;
+    toolbox::logger::StepMark::error(logMsg.str());
+    std::cerr << toolbox::color::red << "Intern couldn't create form: "
+        << toolbox::color::red << formName
+        << toolbox::color::reset << "\n"
+        << toolbox::color::red << "Form not found, returning `NULL'"
+        << toolbox::color::reset << "\n"
+        << toolbox::color::reset << "The available forms are follows:"
         << std::endl;
-    std::cerr << color::red
-        << "Form not found, returning `NULL'" << color::reset
-        << std::endl;
-    std::cerr << "The available forms are follows:" << std::endl;
     for (size_t i = 0; i < formInfosSize; ++i) {
-        std::cerr << "- " << color::green << formInfos[i].name << color::reset
+        std::cerr << "- "
+            << toolbox::color::green << formInfos[i].name
+            << toolbox::color::reset
             << std::endl;
     }
     return NULL;
