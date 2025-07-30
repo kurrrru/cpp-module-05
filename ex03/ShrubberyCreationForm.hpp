@@ -4,7 +4,7 @@
 #include <iostream>
 #include <exception>
 
-#include "AForm.hpp"
+#include <ex03/AForm.hpp>
 
 class ShrubberyCreationForm : public AForm {
  public:
@@ -18,7 +18,12 @@ class ShrubberyCreationForm : public AForm {
 
     class FileCreationException : public std::exception {
      public:
+        explicit FileCreationException(
+            const std::string& message = "Failed to create file");
         virtual const char* what() const throw();
+        virtual ~FileCreationException() throw();
+     private:
+        std::string _message;
     };
 
  private:
