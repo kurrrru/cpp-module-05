@@ -83,20 +83,31 @@ AForm* Intern::makeForm(const std::string& formName,
     logMsg.str("");
     logMsg << "Intern could not create form: " << formName;
     toolbox::logger::StepMark::error(logMsg.str());
-    std::cerr << toolbox::color::red << "Intern couldn't create form: "
-        << toolbox::color::red << formName
-        << toolbox::color::reset << "\n"
-        << toolbox::color::red << "Form not found, returning `NULL'"
-        << toolbox::color::reset << "\n"
-        << toolbox::color::reset << "The available forms are follows:"
-        << std::endl;
+    std::stringstream errMsg;
+    errMsg << "Intern couldn't create form: " << formName << "\n"
+        << "Form not found, returning `NULL'\n"
+        << "The available forms are follows: ";
     for (size_t i = 0; i < formInfosSize; ++i) {
-        std::cerr << "- "
-            << toolbox::color::green << formInfos[i].name
-            << toolbox::color::reset
-            << std::endl;
+        errMsg << formInfos[i].name << (i < formInfosSize - 1 ? ", " : "");
     }
-    return NULL;
+    throw FormNotFoundException(errMsg.str());
+}
+
+Intern::FormNotFoundException::FormNotFoundException(
+    const std::string& message) : _message(message) {
+    std::stringstream logMsg;
+    logMsg << "FormNotFoundException: " << _message;
+    toolbox::logger::StepMark::error(logMsg.str());
+}
+
+const char* Intern::FormNotFoundException::what() const throw() {
+    return _message.c_str();
+}
+
+Intern::FormNotFoundException::~FormNotFoundException() throw() {
+    std::stringstream logMsg;
+    logMsg << "FormNotFoundException destroyed";
+    toolbox::logger::StepMark::debug(logMsg.str());
 }
 
 const Intern::FormInfo Intern::formInfos[] = {
