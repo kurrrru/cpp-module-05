@@ -136,7 +136,8 @@ void AForm::execute(const Bureaucrat& executor) const {
                 << "Bureaucrat \"" << executor.getName()
                 << "\" (grade: " << executor.getGrade()
                 << ") cannot execute form \"" << _name
-                << "\" (grade to execute: " << _gradeToExecute.getGrade() << ")";
+                << "\" (grade to execute: " << _gradeToExecute.getGrade()
+                << ")";
         throw GradeTooLowException(errMsg.str());
     }
     if (!_signed) {

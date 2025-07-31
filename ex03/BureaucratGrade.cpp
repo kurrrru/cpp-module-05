@@ -18,13 +18,15 @@ Bureaucrat::Grade::Grade(int grade) {
     toolbox::logger::StepMark::trace(logMsg.str());
     if (grade < _maxGrade) {
         std::stringstream errMsg;
-        errMsg << "Bureaucrat::Grade::Grade(int grade) failed: Grade is too high: "
+        errMsg
+            << "Bureaucrat::Grade::Grade(int grade) failed: Grade is too high: "
             << "The grade must be between maxGrade=" << _maxGrade
             << " and minGrade=" << _minGrade << ". Provided grade=" << grade;
         throw GradeTooHighException(errMsg.str());
     } else if (grade > _minGrade) {
         std::stringstream errMsg;
-        errMsg << "Bureaucrat::Grade::Grade(int grade) failed: Grade is too low: "
+        errMsg
+            << "Bureaucrat::Grade::Grade(int grade) failed: Grade is too low: "
             << "The grade must be between maxGrade=" << _maxGrade
             << " and minGrade=" << _minGrade << ". Provided grade=" << grade;
         throw GradeTooLowException(errMsg.str());
@@ -40,7 +42,8 @@ Bureaucrat::Grade::Grade(const Grade& src) : _grade(src._grade) {
 
 Bureaucrat::Grade& Bureaucrat::Grade::operator=(const Grade& rhs) {
     std::stringstream logMsg;
-    logMsg << "Bureaucrat::Grade assignment operator called: grade=" << rhs._grade;
+    logMsg << "Bureaucrat::Grade assignment operator called: grade="
+        << rhs._grade;
     toolbox::logger::StepMark::trace(logMsg.str());
     if (this != &rhs) {
         _grade = rhs._grade;

@@ -19,7 +19,7 @@ SRCS = main.cpp \
 OBJS = $(SRCS:.cpp=.o)
 
 # compiler
-CXX = clang++
+CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I..
 
 # rules

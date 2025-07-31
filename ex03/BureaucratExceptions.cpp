@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 #include <sstream>
 
@@ -9,7 +8,8 @@
 Bureaucrat::GradeInvalidException::GradeInvalidException(
     const std::string& message) : _message(message) {
     std::stringstream logMsg;
-    logMsg << "Bureaucrat::GradeInvalidException created: \"" << message << "\"";
+    logMsg << "Bureaucrat::GradeInvalidException created: \""
+        << message << "\"";
     toolbox::logger::StepMark::notice(logMsg.str());
 }
 
@@ -23,14 +23,16 @@ const char* Bureaucrat::GradeInvalidException::what() const throw() {
 
 Bureaucrat::GradeInvalidException::~GradeInvalidException() throw() {
     std::stringstream logMsg;
-    logMsg << "Bureaucrat::GradeInvalidException destroyed: \"" << _message << "\"";
+    logMsg << "Bureaucrat::GradeInvalidException destroyed: \""
+        << _message << "\"";
     toolbox::logger::StepMark::debug(logMsg.str());
 }
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(
     const std::string& message) : GradeInvalidException(message) {
     std::stringstream logMsg;
-    logMsg << "Bureaucrat::GradeTooHighException created: \"" << message << "\"";
+    logMsg << "Bureaucrat::GradeTooHighException created: \""
+        << message << "\"";
     toolbox::logger::StepMark::warning(logMsg.str());
 }
 
@@ -44,7 +46,8 @@ Bureaucrat::GradeTooHighException::~GradeTooHighException()
 Bureaucrat::GradeTooLowException::GradeTooLowException(
     const std::string& message) : GradeInvalidException(message) {
     std::stringstream logMsg;
-    logMsg << "Bureaucrat::GradeTooLowException created: \"" << message << "\"";
+    logMsg << "Bureaucrat::GradeTooLowException created: \""
+        << message << "\"";
     toolbox::logger::StepMark::warning(logMsg.str());
 }
 
