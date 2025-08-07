@@ -1,8 +1,0 @@
-.vscode
-*.o
-*.log
-*.txt
-
-# Executable files
-bureaucrat
-target_shrubbery
