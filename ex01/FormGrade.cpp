@@ -4,7 +4,7 @@
 
 #include <ex01/Form.hpp>
 #include <toolbox/color.hpp>
-#include <toolbox/stepmark.hpp>
+#include <toolbox/StepMark.hpp>
 
 Form::Grade::Grade() : _grade(_minGrade) {
     std::stringstream logMsg;

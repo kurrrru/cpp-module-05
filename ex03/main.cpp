@@ -5,7 +5,7 @@
 #include <ex03/AForm.hpp>
 #include <ex03/Intern.hpp>
 #include <toolbox/color.hpp>
-#include <toolbox/stepmark.hpp>
+#include <toolbox/StepMark.hpp>
 
 int main() {
     toolbox::logger::StepMark::setLogFile("bureaucrat.log");

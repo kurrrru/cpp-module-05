@@ -8,7 +8,7 @@
 #include <ex02/RobotomyRequestForm.hpp>
 #include <ex02/ShrubberyCreationForm.hpp>
 #include <toolbox/color.hpp>
-#include <toolbox/stepmark.hpp>
+#include <toolbox/StepMark.hpp>
 
 int main() {
     toolbox::logger::StepMark::setLogFile("bureaucrat.log");

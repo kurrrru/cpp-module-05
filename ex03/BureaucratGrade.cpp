@@ -4,7 +4,7 @@
 
 #include <ex03/Bureaucrat.hpp>
 #include <toolbox/color.hpp>
-#include <toolbox/stepmark.hpp>
+#include <toolbox/StepMark.hpp>
 
 Bureaucrat::Grade::Grade() : _grade(_minGrade) {
     std::stringstream logMsg;

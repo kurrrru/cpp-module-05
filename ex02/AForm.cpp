@@ -7,7 +7,7 @@
 
 #include <ex02/Bureaucrat.hpp>
 #include <toolbox/color.hpp>
-#include <toolbox/stepmark.hpp>
+#include <toolbox/StepMark.hpp>
 
 AForm::AForm() : _name("default"), _signed(false), _gradeToSign(),
     _gradeToExecute() {

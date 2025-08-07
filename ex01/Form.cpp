@@ -6,7 +6,7 @@
 #include <exception>
 
 #include <toolbox/color.hpp>
-#include <toolbox/stepmark.hpp>
+#include <toolbox/StepMark.hpp>
 
 Form::Form() : _name("default"), _signed(false), _gradeToSign(),
     _gradeToExecute() {

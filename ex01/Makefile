@@ -9,7 +9,7 @@ SRCS = main.cpp \
 	FormExceptions.cpp \
 	FormGrade.cpp \
 	../toolbox/color.cpp \
-	../toolbox/stepmark.cpp
+	../toolbox/StepMark.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # compiler

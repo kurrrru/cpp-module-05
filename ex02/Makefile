@@ -12,7 +12,7 @@ SRCS = main.cpp\
 		RobotomyRequestForm.cpp \
 		PresidentialPardonForm.cpp \
 		../toolbox/color.cpp \
-		../toolbox/stepmark.cpp
+		../toolbox/StepMark.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

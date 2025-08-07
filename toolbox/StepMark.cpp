@@ -10,7 +10,7 @@ The class uses a singleton pattern to ensure that only one instance of the logge
 The class is not thread-safe, so it should not be used in a multi-threaded environment.
 */
 
-#include <toolbox/stepmark.hpp>
+#include <toolbox/StepMark.hpp>
 
 #include <iostream>
 #include <ctime>

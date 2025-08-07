@@ -8,7 +8,7 @@
 #include <ctime>
 
 #include <toolbox/color.hpp>
-#include <toolbox/stepmark.hpp>
+#include <toolbox/StepMark.hpp>
 
 RobotomyRequestForm::RobotomyRequestForm()
     : AForm("Robotomy Request", 72, 45), _target("default") {

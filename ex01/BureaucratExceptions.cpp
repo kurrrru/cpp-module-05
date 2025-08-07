@@ -3,7 +3,7 @@
 
 #include <ex01/Bureaucrat.hpp>
 #include <toolbox/color.hpp>
-#include <toolbox/stepmark.hpp>
+#include <toolbox/StepMark.hpp>
 
 Bureaucrat::GradeInvalidException::GradeInvalidException(
     const std::string& message) : _message(message) {

@@ -5,7 +5,7 @@
 #include <sstream>
 
 #include <toolbox/color.hpp>
-#include <toolbox/stepmark.hpp>
+#include <toolbox/StepMark.hpp>
 
 Bureaucrat::Bureaucrat() : _name("default"), _grade() {
     std::stringstream logMsg;

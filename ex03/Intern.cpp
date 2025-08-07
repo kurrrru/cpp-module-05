@@ -10,7 +10,7 @@
 #include <ex03/RobotomyRequestForm.hpp>
 #include <ex03/ShrubberyCreationForm.hpp>
 #include <toolbox/color.hpp>
-#include <toolbox/stepmark.hpp>
+#include <toolbox/StepMark.hpp>
 
 namespace {
 
