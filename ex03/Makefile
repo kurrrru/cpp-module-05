@@ -34,6 +34,9 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
+clean-log:
+	$(RM) *.log
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re clean-log
